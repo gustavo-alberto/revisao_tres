@@ -24,3 +24,15 @@ def print_first_last_name():
     names = ["Pedro","José","Maria","João"]
     print("1-", names[0])
     print("4-", names[3])
+
+def print_second_third_index():
+    """
+    Crie uma função que declara um array com 4 nomes diferentes e imprime o conteúdo do segundo e terceiro índice do array. Ao final faça um commit no GitHub.
+    Exemplo de entrada: Nenhuma 
+    Exemplo de saída: 
+    2-Maria
+    3-Fulano
+    """
+    names = ["Pedro","José","Maria","João"]
+    print("3-", names[2])
+    print("4-", names[3])
