@@ -44,3 +44,21 @@ def addition_table_2():
     for i in range(1,11):
         result = i + 2
         print("2 + {} = {}".format(i, result))
+
+def multiplication_table():
+    """
+    Crie uma função que imprime a tabuada de multiplicação de um número
+    digitado pelo usuário. Ao final faça um commit no GitHub.
+    Exemplo de entrada: 3
+    Exemplo de saída:
+    3 x 1 = 3
+    3 x 2 = 6
+    3 x 3 = 9
+    """
+    try:
+        n = int(input("Deseja exibir a tabuada de qual número? "))
+        for i in range(11):
+            result = i * n
+            print("{} x {} = {}".format(n, i, result))
+    except:
+        print("Entrada inválida")
