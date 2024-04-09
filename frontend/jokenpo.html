@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <style>
+            * {font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0;}
+            body {background-color: #fafafa; margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 100px;}
+            h1   {font-size: 38pt;}
+            p    {color: red;}
+            .header {background-color: #680094; color: white; display: flex; align-items: center; justify-content: center; padding: 20px; width: 100vw;}
+            .players-container {display: grid; grid-template-columns: auto auto; gap: 50px;}
+            .card {width: 250px; height: 200px; background-color: white; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 4px -1px; display: flex; flex-direction: column; align-items: center; justify-content: top; gap: 20px;}
+            .card h2 {padding: 10px;}
+            .items-container {display: flex; gap: 20px; align-items: center; justify-content: center;}
+            .icon-button {padding: 10px;}
+            .icon-button:hover {cursor: pointer;}
+            .action-button {padding: 10px; width: 250px; height: 50px; font-size: 18pt; background-color: #680094; border: none; border-radius: 4px; color: white;}
+            .action-button:hover {box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 5px 1px; cursor: pointer;}
+        </style>
+        <title>Jokenpo</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Jokenpô</h1>
+        </div>
+        <div class="players-container">
+            <div class="card" id="player">
+                <h2>Jogador</h2>
+                <div class="items-container">
+                    <button class="icon-button" id="item-pedra"><i class="fa-regular fa-hand-back-fist fa-xl"></i></button>
+                    <button class="icon-button" id="item-papel"><i class="fa-regular fa-hand fa-xl"></i></button>
+                    <button class="icon-button" id="item-tesoura"><i class="fa-regular fa-hand-scissors fa-xl"></i></button>
+                </div>
+                <h4 id="player-choice"></h4>
+            </div>
+            <div class="card" id="cpu">
+                <h2>CPU</h2>
+                <div class="items-container">
+                    <i class="fa-solid fa-dice fa-xl icon-button"></i>
+                </div>
+                <h4 id="cpu-choice"></h4>
+            </div>
+        </div>
+        <button id="play-button" class="action-button">Jogar</button>
+        <h1 id="result"></h1>
+        <form action="">
+            <input type="submit" class="action-button" value="Jogar Novamente">
+        </form>
+    </body>
+
+    <script>
+        let choice = 0;
+
+        let playButton = document.getElementById("play-button");
+        playButton.addEventListener("click", ()=>{
+            let userChoice  = choice;
+            let cpuChoiceValue  = cpuChoice();
+            battle(userChoice, cpuChoiceValue);
+        });
+
+        function cpuChoice(){
+            var numeroAleatorio = Math.floor(Math.random() * 3);
+            if (numeroAleatorio === 0){
+                document.getElementById("cpu-choice").innerText = "Computador escolheu Pedra";
+            }
+            if (numeroAleatorio === 1){
+                document.getElementById("cpu-choice").innerText = "Computador escolheu Papel";
+            }
+            if (numeroAleatorio === 2){
+                document.getElementById("cpu-choice").innerText = "Computador escolheu Tesoura";
+            }
+            return numeroAleatorio;
+        };
+
+        function battle(user_choice, cpu_choice){
+            if (user_choice === cpu_choice){
+                console.log("Empate")
+                document.getElementById("result").innerText = "Empate";
+            }
+            else if ((user_choice === 0 && cpu_choice === 2) || (user_choice === 1 && cpu_choice === 0) || (user_choice === 2 && cpu_choice === 1)) {
+                console.log("Jogador Venceu")
+                document.getElementById("result").innerText = "Jogador Venceu!";
+            }
+            else {
+                console.log("Computador venceu")
+                document.getElementById("result").innerText = "Computador Venceu!";
+            }
+        };
+
+        let botaoPedra = document.getElementById("item-pedra");
+        botaoPedra.addEventListener("click", function(){
+            console.log("Pedra");
+            document.getElementById("player-choice").innerText = "Jogador escolheu Pedra";
+            choice = 0;
+            console.log(choice);
+        });
+
+        let botaoPapel = document.getElementById("item-papel");
+        botaoPapel.addEventListener("click", function(){
+            console.log("Papel");
+            document.getElementById("player-choice").innerText = "Jogador escolheu Papel";
+            choice = 1;
+            console.log(choice);
+        });
+
+        let botaoTesoura = document.getElementById("item-tesoura");
+        botaoTesoura.addEventListener("click", function(){
+            console.log("Tesoura");
+            document.getElementById("player-choice").innerText = "Jogador escolheu Tesoura";
+            choice = 2;
+            console.log(choice);
+        });
+    </script>
+</html>
